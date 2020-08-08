@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 from matplotlib.animation import FuncAnimation
-import dft_draw.draw_input as draw_input
+import draw_input
+
 
 """
 returns
@@ -97,9 +98,10 @@ x_data = np.array([])
 y_data = np.array([])
 
 
-fs = draw_input.data.size # number of freq. samples/unit
-T = 1
-N = (int)(T*fs)
+N = draw_input.data.size
+T = 1 # increase to slow down
+fs = draw_input.data.size/T # number of freq. samples/unit
+
 num_cycles = N # max number of cycles used
 
 
@@ -133,21 +135,21 @@ line, = ax.plot(0, 0)
 
 
 step = 0.01
-interval = 25
+interval = 50
 
 circ = init_circles()
 
 #init lines
 lines = np.array([])
 for i in range(circ.size):
-    lines = np.append(lines, mlines.Line2D([circ[i].center[0], circ[i].center[0]+circ[i].radius*np.cos(z_phase[i])],
-                                         [circ[i].center[1], circ[i].center[1]+circ[i].radius*np.sin(z_phase[i])]))
+    lines = np.append(mlines.Line2D([circ[i].center[0], circ[i].center[0]+circ[i].radius*np.cos(z_phase[i])],
+                                    [circ[i].center[1], circ[i].center[1]+circ[i].radius*np.sin(z_phase[i])]), lines)
 for i in range(circ.size):
     ax.add_patch(circ[i])
     ax.add_line(lines[i])
 
 
-animation = FuncAnimation(fig, func=draw, frames=np.arange(0, 1, step), interval=interval)
+animation = FuncAnimation(fig, func=draw, frames=np.arange(0, T, step), interval=interval)
 plt.show()
 
 

@@ -24,7 +24,7 @@ y_ax = [-15,15]
 ax.set_xlim(x_ax[0], x_ax[1])
 ax.set_ylim(y_ax[0], y_ax[1])
 
-line, = ax.plot([], [])
+line, = ax.plot([], [], linestyle = '', marker = '.')
 linebuilder = LineBuilder(line)
 plt.show()
 data = (np.array(linebuilder.xs)+1j*np.array(linebuilder.ys))
