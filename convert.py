@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 from matplotlib.animation import FuncAnimation
-import draw_input
+# import draw_input
+import new_draw_input
 
 
 """
@@ -98,11 +99,12 @@ x_data = np.array([])
 y_data = np.array([])
 
 
-N = draw_input.data.size
+N = new_draw_input.data.size
 T = 1 # increase to slow down
-fs = draw_input.data.size/T # number of freq. samples/unit
+fs = new_draw_input.data.size/T # number of freq. samples/unit
 
-num_cycles = N # max number of cycles used
+print(N)
+num_cycles = 100 # max number of cycles used (increase for more precision)
 
 
 t = np.linspace(0, T, N)
@@ -119,7 +121,7 @@ bin = np.fft.fftfreq(N, d=1/fs)
 #z_amps, z_phase, fft_indices = freq(10*(np.array([-1,-0.5,0,0.5,1,0])+1j*np.array([0,0.5,1,0.5,0,0])), num_cycles)
 
 # user data
-z_amps, z_phase, fft_indices = freq(draw_input.data, num_cycles)
+z_amps, z_phase, fft_indices = freq(new_draw_input.data, num_cycles)
 
 
 
@@ -129,8 +131,8 @@ bin = bin[fft_indices]
 fig, ax = plt.subplots()
 ax.axis('off')
 
-ax.set_xlim(draw_input.x_ax[0], draw_input.x_ax[1])
-ax.set_ylim(draw_input.y_ax[0], draw_input.y_ax[1])
+ax.set_xlim(0, new_draw_input.d.width)
+ax.set_ylim(-new_draw_input.d.height,0)
 line, = ax.plot(0, 0)
 
 
