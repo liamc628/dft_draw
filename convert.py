@@ -104,7 +104,7 @@ T = 1 # increase to slow down
 fs = new_draw_input.data.size/T # number of freq. samples/unit
 
 print(N)
-num_cycles = 100 # max number of cycles used (increase for more precision)
+num_cycles = 200 # max number of cycles used (increase for more precision)
 
 
 t = np.linspace(0, T, N)
@@ -131,8 +131,8 @@ bin = bin[fft_indices]
 fig, ax = plt.subplots()
 ax.axis('off')
 
-ax.set_xlim(0, new_draw_input.d.width)
-ax.set_ylim(-new_draw_input.d.height,0)
+ax.set_xlim(-new_draw_input.d.width/2, new_draw_input.d.width/2)
+ax.set_ylim(-new_draw_input.d.height/2,new_draw_input.d.height/2)
 line, = ax.plot(0, 0)
 
 

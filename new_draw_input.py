@@ -41,4 +41,6 @@ root.mainloop()
 
 data = (d.data_x - 1j*d.data_y)
 print(data)
+data = data + (-d.width/2+1j*d.height/2)
+print(data)
 
